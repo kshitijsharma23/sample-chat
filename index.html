@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Chat- Bold360</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        (function showWidget() {
+            (function() {
+                window._bcvma = window._bcvma || [];
+                _bcvma.push(["setAccountID", "794130127792834009"]);
+                _bcvma.push(["setParameter", "WebsiteID", "788119547699982764"]);
+                _bcvma.push(["setParameter", "InvitationID", "788119547909269704"]);
+                _bcvma.push(["pageViewed", document.location.href, document.referrer]);
+                var bcLoad = function() {
+                    if(window.bcLoaded) return;
+                    window.bcLoaded = true;
+                    var vms = document.createElement("script");
+                    vms.type = "text/javascript"; vms.async = true;
+                    vms.src = ('https:'==document.location.protocol?'https://':'http://') + "vmss.boldchat.com/aid/794130127792834009/bc.vms4/vms.js";
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(vms, s);
+                };
+                if(window.pageViewer && pageViewer.load) pageViewer.load();
+                else if(document.readyState=="complete") bcLoad();
+                else if(window.addEventListener) window.addEventListener('load', bcLoad, false);
+                else window.attachEvent('onload', bcLoad);
+            })();
+
+            if(window.bcChatWindows) {
+                if(window.bcChatWindows.length) {
+                    $('.bc-minimize-state-container').trigger('click');
+                }
+                else{
+                    $('.bcFloat a').trigger('click');
+                }
+            }
+            else {
+                function startChatInterval() {
+                    if($('.bcFloat a').length) {
+                        $('.bcFloat a').trigger('click');
+                        clearChatInterval();
+                    }
+                }
+                function clearChatInterval() {
+                    clearInterval(chatOpenInterval);
+                }
+                var chatOpenInterval = setInterval(startChatInterval, 500);
+            }
+        })();
+    </script>
+</body>
+</html>
