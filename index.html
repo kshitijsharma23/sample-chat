@@ -73,7 +73,14 @@
                 "headers": {
                     "authorization": 'Basic ' + btoa('794130127792834009:788126291309184179:Q27PqEuCUCaxOnwJoZein2+N4OVZR+tT')
                 }
-                "data": JSON.stringify(data)
+                "data": {
+                    Data: JSON.stringify({
+                        "custom_trip_id": "1234567890",
+                        "name": "Kshitij Sharma",
+                        "email": "kshitij.s@cleartrip.com"
+                    }),
+                    SkipPreChat: true
+                } 
             }).done(function (response) {
                 console.log(response);
             });
