@@ -51,29 +51,20 @@
             }
 
             var url = 'https://api.boldchat.com/aid/794130127792834009/rest/json/v1/createChat';
-            // var data = {
-            //     'Params': {
-            //         'SkipPreChat': true,
-            //         'Data': {
-            //             'custom_trip_id': '1234567890'
-            //         }
-            //     }
-            // }
-
             var data = {
-                SkipPreChat: true,
-                Data: "{\"custom_trip_id\": \"1234567890\"}"
-            }
+                "Data": "{\"custom_trip_id\": \"1234567890\", \"name\": \"Kshitij Sharma\", \"email\": \"kshitij.s@cleartrip.com\"}",
+                "SkipPreChat": true
+            };
 
             $.ajax({
+                "async": true,
                 "crossDomain": true,
                 "url": url,
                 "type": "POST",
-                "contentType": "application/json",
+                "contentType": "application/x-www-form-urlencoded",
                 "headers": {
                     "authorization": 'Basic ' + btoa('794130127792834009:788126291309184179:Q27PqEuCUCaxOnwJoZein2+N4OVZR+tT')
                 }
-                // "data": JSON.stringify(data)
                 "data": data
             }).done(function (response) {
                 console.log(response);
