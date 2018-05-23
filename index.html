@@ -13,6 +13,14 @@
                 _bcvma.push(["setAccountID", "794130127792834009"]);
                 _bcvma.push(["setParameter", "WebsiteID", "788119547699982764"]);
                 _bcvma.push(["setParameter", "InvitationID", "788119547909269704"]);
+                // _bcvma.push(["setParameter", "VisitName", ""]);
+                // _bcvma.push(["setParameter", "VisitPhone", ""]);
+                // _bcvma.push(["setParameter", "VisitEmail", ""]);
+                // _bcvma.push(["setParameter", "VisitRef", ""]);
+                // _bcvma.push(["setParameter", "VisitInfo", ""]);
+                _bcvma.push(["setParameter", "Data", "({\"custom_trip_id\": \"1234567890\", \"name\": \"test test\", \"email\": \"test.test@cleartrip.com\"}"]);
+                _bcvma.push(["setParameter", "CustomUrl", ""]);
+                _bcvma.push(["setParameter", "WindowParameters", ""]);
                 _bcvma.push(["pageViewed", document.location.href, document.referrer]);
                 var bcLoad = function() {
                     if(window.bcLoaded) return;
@@ -50,40 +58,28 @@
                 var chatOpenInterval = setInterval(startChatInterval, 500);
             }
 
-            var url = 'https://api.boldchat.com/aid/794130127792834009/rest/json/v1/createChat';
-            var data = {
-                "Data": "{\"custom_trip_id\": \"1234567890\", \"name\": \"Kshitij Sharma\", \"email\": \"kshitij.s@cleartrip.com\"}",
-                "SkipPreChat": "true"
-            };
-            // var data = {
-            //     "Data": {
-            //         "custom_trip_id": "1234567890",
-            //         "name": "Kshitij Sharma",
-            //         "email": "kshitij.s@cleartrip.com"
-            //     },
-            //     "SkipPreChat": true
-            // };
+            // var url = 'https://api.boldchat.com/aid/794130127792834009/rest/json/v1/createChat';
 
-            $.ajax({
-                "async": true,
-                "crossDomain": true,
-                "url": url,
-                "type": "POST",
-                "contentType": "application/x-www-form-urlencoded",
-                "headers": {
-                    "authorization": 'Basic ' + btoa('794130127792834009:788126291309184179:Q27PqEuCUCaxOnwJoZein2+N4OVZR+tT')
-                },
-                "data": {
-                    Data: JSON.stringify({
-                        "custom_trip_id": "1234567890",
-                        "name": "Kshitij Sharma",
-                        "email": "kshitij.s@cleartrip.com"
-                    }),
-                    SkipPreChat: true
-                } 
-            }).done(function (response) {
-                console.log(response);
-            });
+            // $.ajax({
+            //     "async": true,
+            //     "crossDomain": true,
+            //     "url": url,
+            //     "type": "POST",
+            //     "contentType": "application/x-www-form-urlencoded",
+            //     "headers": {
+            //         "authorization": 'Basic ' + btoa('794130127792834009:788126291309184179:Q27PqEuCUCaxOnwJoZein2+N4OVZR+tT')
+            //     },
+            //     "data": {
+            //         Data: JSON.stringify({
+            //             "custom_trip_id": "1234567890",
+            //             "name": "test test",
+            //             "email": "test.test@cleartrip.com"
+            //         }),
+            //         SkipPreChat: true
+            //     } 
+            // }).done(function (response) {
+            //     console.log(response);
+            // });
         })();
     </script>
 </body>
