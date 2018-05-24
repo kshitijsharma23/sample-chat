@@ -5,19 +5,43 @@
     <title>Sample Chat- Bold360</title>
 </head>
 <body>
-    <button id="startChat">Start chat</button>
+    <div>
+        <label for="name">Name: </label>
+        <input id="name" type="text" name="name">
+    </div>
+    <div>
+        <label for="email">Email: </label>
+        <input id="email" type="text" name="email">
+    </div>
+    <div>
+        <label for="tripId">Trip ID: </label>
+        <input id="tripId" type="text" name="tripId">
+    </div>
+    <div>
+        <button id="startChat">Start chat</button>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        function showWidget() {
+        function checkMobileDevice() {
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        function showWidget(name, email, tripId) {
+            var platform = CT.utils.checkMobileDevice() ? 'mweb' : 'desktop';
+            var parameters = 'customField_trip_id=' + tripId + '&customField_platform=' + platform;
             (function() {
                 window._bcvma = window._bcvma || [];
                 _bcvma.push(["setAccountID", "794130127792834009"]);
                 _bcvma.push(["setParameter", "WebsiteID", "788119547699982764"]);
                 _bcvma.push(["setParameter", "InvitationID", "788119547909269704"]);
-                _bcvma.push(["setParameter", "VisitName", "test"]);
-                _bcvma.push(["setParameter", "VisitEmail", "test@cleartrip.com"]);
+                _bcvma.push(["setParameter", "VisitName", name]);
+                _bcvma.push(["setParameter", "VisitEmail", email]);
                 _bcvma.push(["setParameter", "CustomUrl", ""]);
-                _bcvma.push(["setParameter", "WindowParameters", "customField_trip_id=1234567890&customField_platform=Desktop"]);
+                _bcvma.push(["setParameter", "WindowParameters", parameters]);
                 _bcvma.push(["pageViewed", document.location.href, document.referrer]);
                 var bcLoad = function() {
                     if(window.bcLoaded) return;
@@ -151,7 +175,10 @@
             //     console.log(response);
             // });
         }
-        $('#startChat').on('click', showWidget);
+        $('#startChat').on('click', function() {
+            var name = $('#name').val(), email = $('#email').val(), tripId = $('#tripId').val();
+            showWidget(name, email, tripId);
+        });
     </script>
 </body>
 </html>
