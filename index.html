@@ -31,7 +31,7 @@
             }
         }
         function showWidget(name, email, tripId) {
-            var platform = CT.utils.checkMobileDevice() ? 'mweb' : 'desktop';
+            var platform = checkMobileDevice() ? 'mweb' : 'desktop';
             var parameters = 'customField_trip_id=' + tripId + '&customField_platform=' + platform;
             (function() {
                 window._bcvma = window._bcvma || [];
