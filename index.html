@@ -34,15 +34,15 @@
                 else window.attachEvent('onload', bcLoad);
             })();
 
-            if(window.bcChatWindows) {
-                if(window.bcChatWindows.length) {
-                    $('.bc-minimize-state-container').trigger('click');
-                }
-                else{
-                    $('.bcFloat a').trigger('click');
-                }
-            }
-            else {
+            // if(window.bcChatWindows) {
+            //     if(window.bcChatWindows.length) {
+            //         $('.bc-minimize-state-container').trigger('click');
+            //     }
+            //     else{
+            //         $('.bcFloat a').trigger('click');
+            //     }
+            // }
+            // else {
                 function startChatInterval() {
                     if($('.bcFloat a').length) {
                         $('.bcFloat a').trigger('click');
@@ -77,7 +77,7 @@
                     }, 3000);    
                 }
                 var chatOpenInterval = setInterval(startChatInterval, 500);
-            }
+            // }
 
             // var url = 'https://api.boldchat.com/aid/794130127792834009/rest/json/v1/createChat';
 
