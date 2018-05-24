@@ -43,6 +43,43 @@
             //     }
             // }
             // else {
+            //     function startChatInterval() {
+            //         if($('.bcFloat a').length) {
+            //             $('.bcFloat a').trigger('click');
+            //             clearChatInterval();
+            //         }
+            //     }
+            //     function clearChatInterval() {
+            //         clearInterval(chatOpenInterval);
+            //         setTimeout(function() {
+            //             var _tEvents = {
+            //                 "new-message": "bc_newHistoryMessageCallback",
+            //                 "chat-closed": "bc_chatClosedEventCallback",
+            //                 "chat-ended": "bc_chatEndedEventCallback",
+            //                 "push-page": "bc_pushPageEventCallback",
+            //                 "page-loaded": "bc_chatWindowLoadedEventCallback",
+            //                 "resize": "bc_resizeEventCallback"
+            //             },
+            //             _tFunction = function(i, type, fName) {
+            //                 console.warn("event \"" + i + "\" captured inside the frame with " + type + (fName ? " (function name is '" + fName + "')" : ""));
+            //             };
+            //             for (var i in _tEvents) {
+            //                 bcChatWindows[0].addListener(i, _tFunction.bind(window, i, "listener"));
+            //                 window[_tEvents[i]] = _tFunction.bind(window, i, "function", _tEvents[i]);
+            //             }
+            //             bcChatWindows[0].addListener('chat-ended', function() {
+            //                 console.log('Chat ended');
+            //             });
+            //             bcChatWindows[0].addListener('chat-closed', function() {
+            //                 console.log('Chat closed');
+            //                 $('.bcFloat').hide();
+            //             });
+            //         }, 3000);    
+            //     }
+            //     var chatOpenInterval = setInterval(startChatInterval, 500);
+            // }
+
+            function startChat() {
                 function startChatInterval() {
                     if($('.bcFloat a').length) {
                         $('.bcFloat a').trigger('click');
@@ -77,7 +114,19 @@
                     }, 3000);    
                 }
                 var chatOpenInterval = setInterval(startChatInterval, 500);
-            // }
+            }
+
+            if(window.bcChatWindows) {
+                if(window.bcChatWindows.length) {
+                    $('.bc-minimize-state-container').trigger('click');
+                }
+                else{
+                    startChat();
+                }
+            }
+            else {
+                startChat();
+            }
 
             // var url = 'https://api.boldchat.com/aid/794130127792834009/rest/json/v1/createChat';
 
