@@ -47,6 +47,11 @@
                     if($('.bcFloat a').length) {
                         $('.bcFloat a').trigger('click');
                         clearChatInterval();
+                    }
+                }
+                function clearChatInterval() {
+                    clearInterval(chatOpenInterval);
+                    setTimeout(function() {
                         var _tEvents = {
                             "new-message": "bc_newHistoryMessageCallback",
                             "chat-closed": "bc_chatClosedEventCallback",
@@ -69,10 +74,7 @@
                             console.log('Chat closed');
                             $('.bcFloat').hide();
                         });
-                    }
-                }
-                function clearChatInterval() {
-                    clearInterval(chatOpenInterval);
+                    }, 3000);    
                 }
                 var chatOpenInterval = setInterval(startChatInterval, 500);
             }
