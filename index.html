@@ -5,18 +5,17 @@
     <title>Sample Chat- Bold360</title>
 </head>
 <body>
+    <button id="startChat">Start chat</button>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        (function showWidget() {
+        function showWidget() {
             (function() {
                 window._bcvma = window._bcvma || [];
                 _bcvma.push(["setAccountID", "794130127792834009"]);
                 _bcvma.push(["setParameter", "WebsiteID", "788119547699982764"]);
-                // _bcvma.push(["setParameter", "InvitationID", "788119547909269704"]);
+                _bcvma.push(["setParameter", "InvitationID", "788119547909269704"]);
                 _bcvma.push(["setParameter", "VisitName", "test"]);
                 _bcvma.push(["setParameter", "VisitEmail", "test@cleartrip.com"]);
-                _bcvma.push(["setParameter", "Department", "788129830954331666"]);
-                _bcvma.push(["setParameter", "Trip ID", "1234567890"]);
                 _bcvma.push(["setParameter", "CustomUrl", ""]);
                 _bcvma.push(["setParameter", "WindowParameters", "customField_trip_id=1234567890&customField_platform=Desktop"]);
                 _bcvma.push(["pageViewed", document.location.href, document.referrer]);
@@ -48,6 +47,28 @@
                     if($('.bcFloat a').length) {
                         $('.bcFloat a').trigger('click');
                         clearChatInterval();
+                        var _tEvents = {
+                            "new-message": "bc_newHistoryMessageCallback",
+                            "chat-closed": "bc_chatClosedEventCallback",
+                            "chat-ended": "bc_chatEndedEventCallback",
+                            "push-page": "bc_pushPageEventCallback",
+                            "page-loaded": "bc_chatWindowLoadedEventCallback",
+                            "resize": "bc_resizeEventCallback"
+                        },
+                        _tFunction = function(i, type, fName) {
+                            console.warn("event \"" + i + "\" captured inside the frame with " + type + (fName ? " (function name is '" + fName + "')" : ""));
+                        };
+                        for (var i in _tEvents) {
+                            bcChatWindows[0].addListener(i, _tFunction.bind(window, i, "listener"));
+                            window[_tEvents[i]] = _tFunction.bind(window, i, "function", _tEvents[i]);
+                        }
+                        bcChatWindows[0].addListener('chat-ended', function() {
+                            console.log('Chat ended');
+                        });
+                        bcChatWindows[0].addListener('chat-closed', function() {
+                            console.log('Chat closed');
+                            $('.bcFloat').hide();
+                        });
                     }
                 }
                 function clearChatInterval() {
@@ -78,7 +99,8 @@
             // }).done(function (response) {
             //     console.log(response);
             // });
-        })();
+        }
+        $('#showWidget').on('click', showWidget);
     </script>
 </body>
 </html>
